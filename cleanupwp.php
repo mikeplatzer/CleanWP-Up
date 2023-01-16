@@ -75,6 +75,11 @@ function cleanUp_wp_activate() {
                 'post_status' => 'publish'
             ) );
         }
+
+        //Set Home as default page
+        $homepage = get_page_by_title( 'Home' );
+        update_option( 'page_on_front', $homepage->ID );
+        update_option( 'show_on_front', 'page' );
 }
 
 register_activation_hook( __FILE__, 'cleanUp_wp_activate' );
