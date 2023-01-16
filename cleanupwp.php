@@ -26,6 +26,55 @@ function cleanUp_wp_activate() {
     // Set time and date format to German format
     update_option( 'date_format', 'd.m.Y' );
     update_option( 'time_format', 'H:i' );
+
+    // Generate Default Pages
+     // Define the pages
+     $pages = array(
+        'Home' => array(
+            'content' => 'This is the home page.'
+        ),
+        'Über uns' => array(
+            'content' => 'This is the "Über uns" page.'
+        ),
+        'Kontakt' => array(
+            'content' => 'This is the "Kontakt" page.'
+        ),
+        'Impressum' => array(
+            'content' => 'This is the "Impressum" page.'
+        )
+    );
+
+    // Create the pages
+    foreach( $pages as $title => $page ) {
+        $new_page = array(
+            'post_title' => $title,
+            'post_content' => $page['content'],
+            'post_status' => 'publish',
+            'post_type' => 'page'
+        );
+
+        // Check if the page has a template
+        if( isset( $page['template'] ) ) {
+            $new_page['page_template'] = $page['template'];
+        }
+
+        // Insert the page into the database
+        wp_insert_post( $new_page );
+    }
+
+        // Get the privacy policy page
+        $privacy_policy = get_page_by_title( 'Privacy Policy', OBJECT, 'page' );
+
+        // Check if the page exists
+        if( $privacy_policy ) {
+            // Update the post
+            wp_update_post( array(
+                'ID' => $privacy_policy->ID,
+                'post_title' => 'Datenschutzerklärung',
+                'post_name' => 'datenschutz',
+                'post_status' => 'publish'
+            ) );
+        }
 }
 
 register_activation_hook( __FILE__, 'cleanUp_wp_activate' );
