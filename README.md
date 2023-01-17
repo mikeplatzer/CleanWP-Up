@@ -1,2 +1,8 @@
 # CleanWP-Up
-Deletes a specific page and post, sets the language to German, the permalink structure to post name, delete the plugins "Hello Dolly" and "Akismet" and sets the time and date format to a German format.
+WordPress Plugin to do the following actions once activated:
+
+1. Delete Sample Post
+2. Delete Sample Page
+3. Delete the plugins Hello Dolly and Akismet Anti-Spam
+4. Change date and time format to a german format
+5. 
