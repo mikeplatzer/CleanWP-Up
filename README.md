@@ -1,5 +1,5 @@
 # CleanWP-Up
-WordPress Plugin to do the following actions once activated:
+WordPress Plugin to do the following actions once activated on fresh WP installations:
 
 1. Delete Sample Post
 2. Delete Sample Page
